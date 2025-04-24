@@ -152,43 +152,64 @@ footer {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Althlon Synthesis</title>
+    <!-- Carga de Tailwind CSS vía CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Configuración de tus colores de marca
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            orange: '#FF7F11',
+            green:  '#2EB62C',
+            blue:   '#0A1F44',
+          }
+        }
+      }
+    }
+  }
+</script>
+
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header>
-    <img src="logo.webp" alt="Althlon Synthesis Logo">
-    <nav>
-      <ul>
-        <li><a href="#contact">Contact us</a></li>
-        <li><a href="#materials">Alquiler de materiales</a></li>
-        <li><a href="#about">About us</a></li>
-        <li><a href="#subscribe">Suscribirse</a></li>
-      </ul>
+<body class="bg-gray-50 text-gray-800">
+ <header class="bg-brand-blue p-6 flex items-center justify-between">
+    <img src="logo.webp" alt="Althlon Synthesis Logo" class="h-12">
+    <nav class="space-x-8">
+      <a href="#contact" class="text-white font-semibold hover:text-brand-orange">Contact us</a>
+      <a href="#materials" class="text-white font-semibold hover:text-brand-orange">Alquiler</a>
+      <a href="#about" class="text-white font-semibold hover:text-brand-orange">About us</a>
+      <a href="#subscribe" class="text-white font-semibold hover:text-brand-orange">Suscribirse</a>
     </nav>
   </header>
 
-  <section id="contact" class="contact">
-    <h2>Contact us</h2>
+  <section id="contact" class="py-16 px-4 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold text-brand-orange mb-4">Contact us</h2>
     <p>rodriguezriossebastian@estudiante.als.edu.co</p>
     <p>navasobandojuansebastiaan@estudiante.als.edu.co</p>
   </section>
 
-  <section id="materials" class="materials">
-    <h2>Alquiler de materiales</h2>
-    <ul>
-      <li>Pesas</li>
-      <li>Accesorios para máquina multi usos</li>
-      <li>Discos de 5kg a 50kg</li>
-    </ul>
-  </section>
+ <section id="materials" class="py-16 px-4 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold text-brand-orange mb-4">Alquiler de materiales</h2>
+  <ul class="list-disc list-inside space-y-2">
+    <li>Pesas</li>
+    <li>Accesorios para máquina multi usos</li>
+    <li>Discos de 5 kg a 50 kg</li>
+  </ul>
+</section>
 
-  <section id="about" class="about">
-    <h2>About us</h2>
-    <p>Esta IA se desarrolló debido a las grandes dificultades y confusiones al momento de empezar a ir al gimnasio y alcanzar el físico deseado…</p>
-  </section>
 
-  <section id="subscribe" class="subscribe">
-    <h2>Planes VIP</h2>
+  <section id="about" class="py-16 px-4 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold text-brand-orange mb-4">About us</h2>
+  <p class="text-lg leading-relaxed">
+    Esta IA se desarrolló debido a las grandes dificultades y confusiones al momento de empezar a ir al gimnasio y alcanzar el físico deseado, una solución que te permitirá alcanzar tu mejor versión con la tecnología más moderna al alcance de tu mano.
+  </p>
+</section>
+
+
+  <section id="subscribe" class="py-16 px-4 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold text-brand-orange mb-6">Planes VIP</h2>
     <form id="subscribeForm">
       <label for="email">Tu correo:</label>
       <input type="email" id="email" required>
@@ -241,9 +262,10 @@ footer {
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Althlon Synthesis. All rights reserved.</p>
-  </footer>
+  <footer class="bg-brand-blue text-white py-6 text-center">
+  &copy; 2025 Althlon Synthesis
+</footer>
+
 
   <script src="js/library.js"></script>
   <script src="js/app.js"></script>
