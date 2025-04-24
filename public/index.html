@@ -1,0 +1,251 @@
+/*
+Directory Structure:
+
+althlon-web/
+├── server.js
+├── package.json
+└── public/
+    ├── index.html
+    ├── css/
+    │   └── style.css
+    └── js/
+        ├── library.js
+        └── app.js
+*/
+
+// server.js
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Servir archivos estáticos de la carpeta public
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
+// Endpoint de suscripción (mock)
+app.post('/api/subscribe', (req, res) => {
+  const { plan, duration, email } = req.body;
+  // Lógica de suscripción simplificada
+  console.log(`Nueva suscripción: ${email} - Plan: ${plan}, Duración: ${duration}`);
+  res.json({ success: true, message: '¡Suscripción exitosa!' });
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+/*
+package.json (run npm init -y y npm install express)
+{
+  "name": "althlon-web",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+*/
+
+// public/js/library.js
+// Librería simple para UI toggles y helpers
+const ALS = {
+  qs: selector => document.querySelector(selector),
+  qsa: selector => document.querySelectorAll(selector),
+  on: (el, event, fn) => el.addEventListener(event, fn),
+  toggleClass: (el, cls) => el.classList.toggle(cls),
+};
+
+// public/js/app.js
+// Lógica de interacción en la página
+window.addEventListener('DOMContentLoaded', () => {
+  const subscribeForm = ALS.qs('#subscribeForm');
+  ALS.on(subscribeForm, 'submit', async e => {
+    e.preventDefault();
+    const email = ALS.qs('#email').value;
+    const plan = ALS.qs('#planSelect').value;
+    const duration = ALS.qs('#durationSelect').value;
+    const response = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ email, plan, duration })
+    });
+    const result = await response.json();
+    alert(result.message);
+  });
+});
+
+/* public/css/style.css */
+/* Colores: naranja (#FF7F11), verde (#2EB62C), azul oscuro (#0A1F44) */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f6fa;
+  color: #333;
+}
+header {
+  background-color: #0A1F44;
+  padding: 20px;
+  text-align: center;
+}
+header img {
+  max-width: 150px;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+nav li {
+  margin: 0 15px;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+section {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+section h2 {
+  color: #FF7F11;
+}
+.contact, .materials, .about, .subscribe {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 40px;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+input, select, button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+button {
+  background-color: #2EB62C;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #249F24;
+}
+footer {
+  background-color: #0A1F44;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/** public/index.html **/
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Althlon Synthesis</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.webp" alt="Althlon Synthesis Logo">
+    <nav>
+      <ul>
+        <li><a href="#contact">Contact us</a></li>
+        <li><a href="#materials">Alquiler de materiales</a></li>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#subscribe">Suscribirse</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="contact" class="contact">
+    <h2>Contact us</h2>
+    <p>rodriguezriossebastian@estudiante.als.edu.co</p>
+    <p>navasobandojuansebastiaan@estudiante.als.edu.co</p>
+  </section>
+
+  <section id="materials" class="materials">
+    <h2>Alquiler de materiales</h2>
+    <ul>
+      <li>Pesas</li>
+      <li>Accesorios para máquina multi usos</li>
+      <li>Discos de 5kg a 50kg</li>
+    </ul>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About us</h2>
+    <p>Esta IA se desarrolló debido a las grandes dificultades y confusiones al momento de empezar a ir al gimnasio y alcanzar el físico deseado…</p>
+  </section>
+
+  <section id="subscribe" class="subscribe">
+    <h2>Planes VIP</h2>
+    <form id="subscribeForm">
+      <label for="email">Tu correo:</label>
+      <input type="email" id="email" required>
+
+      <label for="planSelect">Plan:</label>
+      <select id="planSelect">
+        <option value="platinium">Platinium</option>
+        <option value="oro">Oro</option>
+        <option value="bronce">Bronce</option>
+      </select>
+
+      <label for="durationSelect">Duración:</label>
+      <select id="durationSelect">
+        <option value="1_mes">1 mes</option>
+        <option value="6_meses">6 meses</option>
+        <option value="12_meses">1 año</option>
+      </select>
+
+      <button type="submit">Suscribirse</button>
+    </form>
+
+    <div class="plans-details">
+      <h3>Platinium</h3>
+      <ul>
+        <li>Acceso a todas las herramientas</li>
+        <li>Planificación de rutinas personalizadas</li>
+        <li>Periodización automática</li>
+        <li>Seguimiento y análisis en tiempo real</li>
+        <li>Reconocimiento de repeticiones y pausas</li>
+        <li>Corrección de postura</li>
+        <li>Recomendaciones de carga</li>
+        <li>Monitoreo fisiológico</li>
+        <li>Nutrición y suplementación</li>
+      </ul>
+
+      <h3>Oro</h3>
+      <ul>
+        <li>Todo lo de Platinium excepto:</li>
+        <li>Corrección de postura</li>
+        <li>Reconocimiento de repeticiones y pausas</li>
+        <li>Monitoreo fisiológico</li>
+      </ul>
+
+      <h3>Bronce</h3>
+      <ul>
+        <li>Todo lo de Oro excepto:</li>
+        <li>Nutrición y suplementación</li>
+        <li>Periodización automática</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Althlon Synthesis. All rights reserved.</p>
+  </footer>
+
+  <script src="js/library.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
