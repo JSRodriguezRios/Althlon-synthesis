@@ -152,42 +152,47 @@ footer {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Althlon Synthesis</title>
-    <!-- Carga de Tailwind CSS vía CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  // Configuración de tus colores de marca
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: {
-            orange: '#FF7F11',
-            green:  '#2EB62C',
-            blue:   '#0A1F44',
+
+  <!-- 1) CONFIGURA COLORES DE MARCA -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF7F11',
+              green:  '#2EB62C',
+              blue:   '#0A1F44',
+            }
           }
         }
       }
-    }
-  }
-</script>
+    };
+  </script>
 
+  <!-- 2) CARGA TAILWIND DESPUÉS DE LA CONFIG -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 3) TU CSS PARA OVERRIDES (si lo necesitas) -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
- <header class="bg-brand-blue p-6 flex items-center justify-between">
-    <img src="logo.webp" alt="Althlon Synthesis Logo" class="h-12">
-    <nav class="space-x-8">
-      <a href="#contact" class="text-white font-semibold hover:text-brand-orange">Contact us</a>
-      <a href="#materials" class="text-white font-semibold hover:text-brand-orange">Alquiler</a>
-      <a href="#about" class="text-white font-semibold hover:text-brand-orange">About us</a>
-      <a href="#subscribe" class="text-white font-semibold hover:text-brand-orange">Suscribirse</a>
+
+<body class="bg-gray-50 text-gray-900">
+
+  <header class="bg-brand-blue p-6 flex items-center justify-between">
+    <img src="logo.webp" alt="Logo" class="h-12">
+    <nav class="space-x-6">
+      <a href="#contact" class="text-white hover:text-brand-orange">Contact us</a>
+      <a href="#materials" class="text-white hover:text-brand-orange">Alquiler</a>
+      <a href="#about" class="text-white hover:text-brand-orange">About us</a>
+      <a href="#subscribe" class="text-white hover:text-brand-orange">Suscribirse</a>
     </nav>
   </header>
 
   <section id="contact" class="py-16 px-4 max-w-4xl mx-auto">
-  <h2 class="text-3xl font-bold text-brand-orange mb-4">Contact us</h2>
-    <p>rodriguezriossebastian@estudiante.als.edu.co</p>
-    <p>navasobandojuansebastiaan@estudiante.als.edu.co</p>
+    <h2 class="text-4xl font-bold text-brand-orange mb-6">Contact us</h2>
+    <p>rodriguezrios…@estudiante.als.edu.co</p>
+    <p>navasobando…@estudiante.als.edu.co</p>
   </section>
 
  <section id="materials" class="py-16 px-4 max-w-4xl mx-auto">
@@ -262,9 +267,11 @@ footer {
     </div>
   </section>
 
-  <footer class="bg-brand-blue text-white py-6 text-center">
-  &copy; 2025 Althlon Synthesis
-</footer>
+    <footer class="bg-brand-blue text-white text-center py-6">
+    © 2025 Althlon Synthesis
+  </footer>
+
+</body>
 
 
   <script src="js/library.js"></script>
