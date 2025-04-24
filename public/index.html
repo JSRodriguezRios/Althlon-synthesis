@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Althlon Synthesis</title>
 
-  <!-- 1) CONFIGURA COLORES DE MARCA ANTES DE CARGAR TAILWIND -->
+   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -14,20 +15,18 @@
             brand: {
               orange: '#FF7F11',
               green:  '#2EB62C',
-              blue:   '#0A1F44'
+              blue:   '#0A1F44',
             }
           }
         }
       }
-    };
+    }
   </script>
 
-  <!-- 2) CARGA TAILWIND DESPUÉS DE LA CONFIG -->
-  <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- 3) OVERRIDES MÍNIMOS -->
   <!-- Solo si necesitas algo puntual; por ahora puedes dejarlo vacío -->
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- <link rel="stylesheet" href="css/style.css" /> -->
 </head>
 
 <body class="bg-gray-50 text-gray-900">
