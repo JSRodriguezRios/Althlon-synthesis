@@ -1,0 +1,15 @@
+{
+  "name": "althlon-web",
+  "version": "1.0.0",
+  "description": "Plataforma de entrenamiento personalizado con IA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["fitness", "IA", "entrenamiento", "Althlon"],
+  "author": "Althlon Synthesis",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
