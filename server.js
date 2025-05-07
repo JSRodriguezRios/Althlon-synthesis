@@ -19,14 +19,14 @@ app.post('/api/subscribe', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });
-
+npm install dotenv
 // server.js
 require('dotenv').config();
 const express = require('express');
 const { OrderService } = require('./paymentService');
 const app = express();
 …
-nmp install dotenv
+
 const { OrderService } = require('./script.js');
 
 app.post('/api/create-order', async (req, res) => {
