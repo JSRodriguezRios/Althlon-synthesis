@@ -19,25 +19,4 @@ app.post('/api/subscribe', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });
-npm install dotenv
-// server.js
-require('dotenv').config();
-const express = require('express');
-const { OrderService } = require('./paymentService');
-const app = express();
-…
-
-const { OrderService } = require('./script.js');
-
-app.post('/api/create-order', async (req, res) => {
-  const { plan, duration } = req.body;
-  const order = await OrderService.createOrder(plan, duration);
-  res.json(order);
-});
-
-app.post('/api/capture-order', async (req, res) => {
-  const { orderId } = req.body;
-  const capture = await OrderService.captureOrder(orderId);
-  res.json(capture);
-});
 
