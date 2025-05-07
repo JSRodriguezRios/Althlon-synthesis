@@ -309,7 +309,56 @@
   <footer class="bg-brand-blue text-white text-center py-6">
     © 2025 Althlon Synthesis
   </footer>
+<!-- APP LOGIC -->
+  <script type="module">
+    // precios mensuales
+    const prices = { platinium: 25, oro: 18, bronce: 12 };
 
+    // utilidades de DOM
+    const $ = sel => document.querySelector(sel);
+
+    // cálculo de total
+    function calcTotal(plan, dur) {
+      const months = dur === '1_mes' ? 1
+                   : dur === '6_meses' ? 6
+                   : 12;
+      return prices[plan] * months;
+    }
+
+    // actualiza recuadro de pago
+    function updatePayment() {
+      const plan = $('#planSelect').value;
+      const dur  = $('#durationSelect').value;
+      $('#paymentBox').textContent =
+        `Total a pagar: $${calcTotal(plan, dur).toFixed(2)}`;
+    }
+
+    // simula backend
+    async function subscribeUser(data) {
+      // aquí iría fetch('/api/subscribe', …)
+      await new Promise(r => setTimeout(r, 300));
+      const stored = JSON.parse(localStorage.getItem('subs')||'[]');
+      localStorage.setItem('subs', JSON.stringify([...stored, data]));
+      return { success: true, message: '¡Suscripción exitosa!' };
+    }
+
+    // inicialización
+    document.addEventListener('DOMContentLoaded', () => {
+      $('#planSelect').addEventListener('change', updatePayment);
+      $('#durationSelect').addEventListener('change', updatePayment);
+      updatePayment();
+
+      $('#subscribeForm').addEventListener('submit', async e => {
+        e.preventDefault();
+        const payload = {
+          email:  $('#email').value,
+          plan:   $('#planSelect').value,
+          duration: $('#durationSelect').value
+        };
+        const res = await subscribeUser(payload);
+        alert(res.message);
+      });
+    });
  
   </script>
 </body>
